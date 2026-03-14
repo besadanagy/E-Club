@@ -1,5 +1,4 @@
-﻿
-var builder = WebApplication.CreateBuilder(args);
+﻿var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDependencies(builder.Configuration);
@@ -12,9 +11,20 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+else
+{
+    // ◀️ في Production، شغل Swagger برضه للـ Testing
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "E-Club API V1");
+    });
+}
 
+// ◀️ مهم جداً: حول HTTP لـ HTTPS
 app.UseHttpsRedirection();
 
+// ◀️ Cors لازم يكون قبل Authentication
 app.UseCors("AllowSpecificOrigins");
 
 app.UseAuthentication();

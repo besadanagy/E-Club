@@ -53,12 +53,12 @@ namespace E_Club.JWT
                 SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: _options.Issuer,
-                audience: _options.Audience,
-                claims: claims,
-                expires: DateTime.UtcNow.AddMinutes(_options.ExpiresInMinutes),
-                signingCredentials: signingCredentials
-            );
+      issuer: _options.Issuer,
+      audience: _options.Audience?.FirstOrDefault() ?? "https://e-club.runasp.net",  // ◀️ خذ أول قيمة
+      claims: claims,
+      expires: DateTime.UtcNow.AddMinutes(_options.ExpiresInMinutes),
+      signingCredentials: signingCredentials
+  );
 
             var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
 
@@ -81,7 +81,7 @@ namespace E_Club.JWT
                     ValidateIssuer = true,
                     ValidIssuer = _options.Issuer,
                     ValidateAudience = true,
-                    ValidAudience = _options.Audience,
+                    ValidAudience = _options.Audience?.FirstOrDefault() ?? "https://e-club.runasp.net"  ,
                     ValidateLifetime = true,
                     ClockSkew = TimeSpan.Zero // مهم جداً للـ expiration
                 }, out SecurityToken validatedToken);
