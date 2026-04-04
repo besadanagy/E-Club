@@ -1,4 +1,4 @@
-﻿namespace E_Club.Services
+﻿namespace E_Club.Interfaces
 {
     public interface IAuthenticationService
     {

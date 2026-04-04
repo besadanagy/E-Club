@@ -1,6 +1,4 @@
 ﻿
-using Hangfire.SqlServer;
-
 namespace E_Club.Extensions
 {
     public static class DependencyInjection
@@ -21,7 +19,8 @@ namespace E_Club.Extensions
             // هذا حل مؤقت للـ Migration - نستخدم واجهة وهمية
             services.AddScoped<IEmailSender,MailSenderServices>(); // أو أي class بسيط ينفذ IEmailSender
             services.AddScoped<IDashboardService, DashboardService>();
-
+            services.AddScoped<IEventService, EventService>();
+            services.AddScoped<IServiceService, ServiceService>();
             // Database Context
             services.AddDatabaseConfiguration(configuration);
 
@@ -226,9 +225,8 @@ namespace E_Club.Extensions
 
         private static IServiceCollection AddHangfireConfigurations(this IServiceCollection services, IConfiguration configuration)
         {
-            // استخدم DefaultConnection لو HangfireConnection مش موجودة
-            var hangfireConnection = configuration.GetConnectionString("HangfireConnection")
-                ?? configuration.GetConnectionString("DefaultConnection");
+            // استخدم نفس ConnectionString بتاع DefaultConnection
+            var hangfireConnection = configuration.GetConnectionString("DefaultConnection");
 
             if (string.IsNullOrEmpty(hangfireConnection))
                 throw new InvalidOperationException("No connection string found for Hangfire.");
@@ -239,10 +237,11 @@ namespace E_Club.Extensions
                 .UseRecommendedSerializerSettings()
                 .UseSqlServerStorage(hangfireConnection, new SqlServerStorageOptions
                 {
-                    PrepareSchemaIfNecessary = true,  // دي بتخلق الجداول لو مش موجودة
                     CommandBatchMaxTimeout = TimeSpan.FromMinutes(5),
                     SlidingInvisibilityTimeout = TimeSpan.FromMinutes(5),
-                    QueuePollInterval = TimeSpan.FromSeconds(15)
+                    QueuePollInterval = TimeSpan.FromSeconds(15),
+                    UseRecommendedIsolationLevel = true,
+                    DisableGlobalLocks = true
                 }));
 
             services.AddHangfireServer();

@@ -4,6 +4,7 @@ using E_Club.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Club.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260317150123_AddEventsTable")]
+    partial class AddEventsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,8 +182,8 @@ namespace E_Club.Migrations
                         {
                             Id = "22222222-2222-2222-2222-222222222222",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "84dafe89-5c3c-4a65-800b-5866858ed77c",
-                            CreatedOn = new DateTime(2026, 3, 19, 14, 44, 39, 608, DateTimeKind.Utc).AddTicks(6790),
+                            ConcurrencyStamp = "40a1f88a-2279-4e86-a19d-1bfcdfc0ff8e",
+                            CreatedOn = new DateTime(2026, 3, 17, 15, 1, 22, 560, DateTimeKind.Utc).AddTicks(5624),
                             Email = "admin@eclub.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -189,9 +192,9 @@ namespace E_Club.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ECLUB.COM",
                             NormalizedUserName = "ADMIN@ECLUB.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEJwuREXKvnOLeyV1yvuiJ8J2jCUb3k1NKKep0nE6mCnJqhosyUhcOttZV3bY4P7Ogw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAENtZFz65LwL60e/uSmCi8IxFKWMUatUzWjCLhaabCk39TLz5qsLBRLZrKCZH3/xlYA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "ef02a33a-3d4b-4be6-b957-762af0f9112d",
+                            SecurityStamp = "2a12094b-4294-4d34-b0d8-3aef608374e4",
                             TwoFactorEnabled = false,
                             UserName = "admin@eclub.com"
                         });
@@ -266,7 +269,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 3, 19, 14, 44, 39, 600, DateTimeKind.Utc).AddTicks(9841),
+                            CreatedOn = new DateTime(2026, 3, 17, 15, 1, 22, 557, DateTimeKind.Utc).AddTicks(7585),
                             CurrentParticipants = 45,
                             Description = "Join us for the biggest football event of the year!",
                             EndDate = new DateTime(2023, 10, 26, 18, 0, 0, 0, DateTimeKind.Utc),
@@ -312,113 +315,6 @@ namespace E_Club.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("RefreshTokens");
-                });
-
-            modelBuilder.Entity("E_Club.Models.Service", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("CreatedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<int>("DisplayOrder")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(0);
-
-                    b.Property<string>("Endpoint")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Icon")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasMaxLength(500)
-                        .HasColumnType("nvarchar(500)");
-
-                    b.Property<bool>("IsActive")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bit")
-                        .HasDefaultValue(true);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UpdatedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.ToTable("Services", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 3, 19, 14, 44, 39, 607, DateTimeKind.Utc).AddTicks(3053),
-                            Description = "Reserve your favorite football field",
-                            DisplayOrder = 1,
-                            Endpoint = "/book-field",
-                            Icon = "sports_soccer",
-                            IsActive = true,
-                            Name = "Book a Field",
-                            Type = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 3, 19, 14, 44, 39, 607, DateTimeKind.Utc).AddTicks(3058),
-                            Description = "Participate in upcoming tournaments",
-                            DisplayOrder = 2,
-                            Endpoint = "/join-tournament",
-                            Icon = "emoji_events",
-                            IsActive = true,
-                            Name = "Join Tournament",
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 3, 19, 14, 44, 39, 607, DateTimeKind.Utc).AddTicks(3060),
-                            Description = "Get one-on-one coaching",
-                            DisplayOrder = 3,
-                            Endpoint = "/personal-coaching",
-                            Icon = "sports",
-                            IsActive = true,
-                            Name = "Personal Coaching",
-                            Type = 2
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -558,21 +454,6 @@ namespace E_Club.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("E_Club.Models.Service", b =>
-                {
-                    b.HasOne("E_Club.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById");
-
-                    b.HasOne("E_Club.Models.ApplicationUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("UpdatedBy");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

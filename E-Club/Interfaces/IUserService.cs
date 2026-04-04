@@ -1,7 +1,4 @@
-﻿using E_Club.DTOs.Users.Requests;
-using E_Club.DTOs.Users.Responses;
-
-namespace E_Club.Services
+﻿namespace E_Club.Interfaces
 {
     public interface IUserService
     {

@@ -1,5 +1,4 @@
-﻿using E_Club.DTOs.Dashboard;
-
+﻿
 namespace E_Club.Interfaces;
 
 public interface IDashboardService

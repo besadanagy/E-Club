@@ -161,7 +161,7 @@
                 user.MembershipId,
                 user.DigitalAccessKey
             ));
-        }
+        }   
         public async Task<Result> RevokeRefreshTokenAsync(string token, string refreshToken, CancellationToken cancellationToken = default)
         {
             var userId = _jwtProvider.ValidateToken(token);

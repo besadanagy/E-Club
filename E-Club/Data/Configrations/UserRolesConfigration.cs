@@ -1,7 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.AspNetCore.Identity;
-
+﻿
 namespace E_Club.Data.Configurations
 {
     public class UserRoleConfiguration : IEntityTypeConfiguration<IdentityUserRole<string>>

@@ -13,7 +13,7 @@ if (app.Environment.IsDevelopment())
 }
 else
 {
-    // ◀️ في Production، شغل Swagger برضه للـ Testing
+    // في Production، شغل Swagger برضه للـ Testing
     app.UseSwagger();
     app.UseSwaggerUI(c =>
     {
@@ -21,8 +21,11 @@ else
     });
 }
 
-// ◀️ مهم جداً: حول HTTP لـ HTTPS
+// ◀️ مهم: تحويل HTTP إلى HTTPS
 app.UseHttpsRedirection();
+
+// ◀️ ملفات ثابتة (لو عندك)
+app.UseStaticFiles();
 
 // ◀️ Cors لازم يكون قبل Authentication
 app.UseCors("AllowSpecificOrigins");

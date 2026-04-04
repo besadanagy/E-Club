@@ -47,6 +47,22 @@ global using MimeKit.Text;
 global using E_Club.Interfaces;
 global using E_Club.DTOs.Dashboard;
 global using Microsoft.EntityFrameworkCore.Migrations;
+global using E_Club.DTOs.Events.Requests;
+global using E_Club.DTOs.Events.Responses;
+global using Hangfire.SqlServer;
+global using E_Club.DTOs.Services.Requests;
+global using E_Club.DTOs.Services.Responses;
+
+//global 
+//global 
+//global 
+//global 
+//global 
+//global 
+//global 
+//global 
+//global 
+//global 
 //global 
 //global 
 //global 

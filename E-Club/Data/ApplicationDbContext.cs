@@ -1,12 +1,4 @@
-﻿using E_Club.Models;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Org.BouncyCastle.Utilities;
-using System.Reflection;
-using System.Security.Claims;
-
+﻿
 namespace E_Club.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
@@ -22,8 +14,8 @@ namespace E_Club.Data
 
         // DbSets
         public DbSet<RefreshToken> RefreshTokens { get; set; }
-        //public DbSet<Branch> Branches { get; set; }           // ◀️ مثال
-        //public DbSet<Sport> Sports { get; set; }               // ◀️ مثال
+        public DbSet<Event> Events { get; set; }
+        public DbSet<Service> Services { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
