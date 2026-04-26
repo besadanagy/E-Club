@@ -1,4 +1,4 @@
-﻿global using E_Club.Models;
+global using E_Club.Models;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.IdentityModel.Tokens;
 global using System.IdentityModel.Tokens.Jwt;
@@ -59,11 +59,17 @@ global using E_Club.DTOs.Services.Responses;
 //global 
 //global 
 //global 
-//global 
-//global 
-//global 
-//global 
-//global 
+//global
+global using E_Club.DTOs.Banners.Requests;
+global using E_Club.DTOs.Banners.Responses;
+global using E_Club.DTOs.Home;
+global using E_Club.DTOs.Sports.Requests;
+global using E_Club.DTOs.Sports.Responses;
+global using E_Club.DTOs.Notifications.Requests;
+global using E_Club.DTOs.Notifications.Responses;
+global using E_Club.DTOs.Coaches.Requests;
+global using E_Club.DTOs.Coaches.Responses;
+
 //global 
 //global 
 //global 

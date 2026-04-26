@@ -16,7 +16,7 @@ namespace E_Club.DTOs.Auth.Validators
                     .NotEmpty().WithMessage("Club code is required for admin login.");
             });
 
-            // Member validation
+            //Member validation
             When(x => !x.IsAdmin, () =>
             {
                 RuleFor(x => x.MembershipId)

@@ -180,7 +180,15 @@
                 user.Email!,
                 user.UserName!,
                 user.FirstName,
-                user.LastName
+                user.LastName,
+                user.PhoneNumber,
+                user.NationalId,
+                user.MembershipId,
+                user.SequenceNumber,
+                user.DigitalAccessKey,
+                user.ClubCode,
+                user.CreatedOn,
+                roles
             );
 
             return Result.Success(response);

@@ -4,6 +4,7 @@ using E_Club.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Club.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260422010158_AddBannersAndSports")]
+    partial class AddBannersAndSports
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,8 +182,8 @@ namespace E_Club.Migrations
                         {
                             Id = "22222222-2222-2222-2222-222222222222",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "544aa1cd-8dca-4d82-be37-7b46481b166b",
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 828, DateTimeKind.Utc).AddTicks(5780),
+                            ConcurrencyStamp = "9aeeebaa-847d-4803-82dc-6fcb6aac9b79",
+                            CreatedOn = new DateTime(2026, 4, 22, 1, 1, 57, 101, DateTimeKind.Utc).AddTicks(7549),
                             Email = "admin@eclub.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -189,9 +192,9 @@ namespace E_Club.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ECLUB.COM",
                             NormalizedUserName = "ADMIN@ECLUB.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAELgR7pF33JwCFf7SJuTplpb0xDmBNjZou9nYVWDbR67SLtQ5pLYo8xVjQp/LaIGDmg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBoIoOKR9WTJV5ApNrJPk97+Z4oNnY+e52FAQ8L2vW2B+uiSh3sDwif73kNUdN847g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "bf6cfee8-8927-4a88-97a9-48bbcb2a3b80",
+                            SecurityStamp = "c1e14f18-8fc6-4af6-b4b0-ca9934ba436b",
                             TwoFactorEnabled = false,
                             UserName = "admin@eclub.com"
                         });
@@ -216,7 +219,9 @@ namespace E_Club.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("ImageUrl")
                         .IsRequired()
@@ -224,7 +229,9 @@ namespace E_Club.Migrations
                         .HasColumnType("nvarchar(500)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Subtitle")
                         .IsRequired()
@@ -257,13 +264,41 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 809, DateTimeKind.Utc).AddTicks(3212),
+                            ActionUrl = "/join-tournament",
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
                             ImageUrl = "/images/banners/tournament.jpg",
                             IsActive = true,
-                            Subtitle = "Registrations open",
+                            Subtitle = "Registrations open for the Summer Cup.",
                             Title = "New Tournament",
                             Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ActionUrl = "/personal-coaching",
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 2,
+                            ImageUrl = "/images/banners/coaching.jpg",
+                            IsActive = true,
+                            Subtitle = "Train with professional coaches.",
+                            Title = "Personal Coaching",
+                            Type = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ActionUrl = "/register",
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            DisplayOrder = 3,
+                            ImageUrl = "/images/banners/membership.jpg",
+                            IsActive = true,
+                            Subtitle = "Join our elite sports community today.",
+                            Title = "Club Membership",
+                            Type = 2
                         });
                 });
 
@@ -296,64 +331,6 @@ namespace E_Club.Migrations
                         .IsUnique();
 
                     b.ToTable("ClassBookings", (string)null);
-                });
-
-            modelBuilder.Entity("E_Club.Models.Coach", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Bio")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("ExperienceYears")
-                        .HasColumnType("int");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<double>("Rating")
-                        .HasColumnType("float");
-
-                    b.Property<string>("Specialization")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedById")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<DateTime?>("UpdatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CreatedById");
-
-                    b.HasIndex("UpdatedById");
-
-                    b.ToTable("Coaches");
                 });
 
             modelBuilder.Entity("E_Club.Models.Event", b =>
@@ -425,7 +402,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 818, DateTimeKind.Utc).AddTicks(4642),
+                            CreatedOn = new DateTime(2026, 4, 22, 1, 1, 57, 92, DateTimeKind.Utc).AddTicks(8974),
                             CurrentParticipants = 45,
                             Description = "Join us for the biggest football event of the year!",
                             EndDate = new DateTime(2023, 10, 26, 18, 0, 0, 0, DateTimeKind.Utc),
@@ -467,50 +444,6 @@ namespace E_Club.Migrations
                         .IsUnique();
 
                     b.ToTable("EventRegistrations", (string)null);
-                });
-
-            modelBuilder.Entity("E_Club.Models.Notification", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Body")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsRead")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("ReadAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int?>("ReferenceId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ReferenceType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Title")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Notifications");
                 });
 
             modelBuilder.Entity("E_Club.Models.RefreshToken", b =>
@@ -618,7 +551,7 @@ namespace E_Club.Migrations
                         {
                             Id = 1,
                             CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 825, DateTimeKind.Utc).AddTicks(375),
+                            CreatedOn = new DateTime(2026, 4, 22, 1, 1, 57, 95, DateTimeKind.Utc).AddTicks(9470),
                             Description = "Reserve your favorite football field",
                             DisplayOrder = 1,
                             Endpoint = "/book-field",
@@ -631,7 +564,7 @@ namespace E_Club.Migrations
                         {
                             Id = 2,
                             CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 825, DateTimeKind.Utc).AddTicks(380),
+                            CreatedOn = new DateTime(2026, 4, 22, 1, 1, 57, 95, DateTimeKind.Utc).AddTicks(9473),
                             Description = "Participate in upcoming tournaments",
                             DisplayOrder = 2,
                             Endpoint = "/join-tournament",
@@ -644,7 +577,7 @@ namespace E_Club.Migrations
                         {
                             Id = 3,
                             CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 825, DateTimeKind.Utc).AddTicks(382),
+                            CreatedOn = new DateTime(2026, 4, 22, 1, 1, 57, 95, DateTimeKind.Utc).AddTicks(9475),
                             Description = "Get one-on-one coaching",
                             DisplayOrder = 3,
                             Endpoint = "/personal-coaching",
@@ -670,7 +603,9 @@ namespace E_Club.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<int>("DisplayOrder")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasDefaultValue(0);
 
                     b.Property<string>("Icon")
                         .IsRequired()
@@ -678,10 +613,13 @@ namespace E_Club.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<bool>("IsActive")
-                        .HasColumnType("bit");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -706,7 +644,8 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 827, DateTimeKind.Utc).AddTicks(3431),
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 1,
                             Icon = "sports_soccer",
                             IsActive = true,
@@ -715,7 +654,8 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 827, DateTimeKind.Utc).AddTicks(3434),
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 2,
                             Icon = "sports_basketball",
                             IsActive = true,
@@ -724,7 +664,8 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2026, 4, 23, 4, 2, 38, 827, DateTimeKind.Utc).AddTicks(3436),
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
                             DisplayOrder = 3,
                             Icon = "sports_tennis",
                             IsActive = true,
@@ -740,9 +681,6 @@ namespace E_Club.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int?>("CoachId")
-                        .HasColumnType("int");
-
                     b.Property<string>("CreatedById")
                         .HasColumnType("nvarchar(450)");
 
@@ -753,13 +691,15 @@ namespace E_Club.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("ImageUrl")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Location")
                         .IsRequired()
@@ -770,8 +710,8 @@ namespace E_Club.Migrations
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(10, 2)
+                        .HasColumnType("decimal(10,2)");
 
                     b.Property<int>("SportId")
                         .HasColumnType("int");
@@ -798,8 +738,6 @@ namespace E_Club.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CoachId");
-
                     b.HasIndex("CreatedById");
 
                     b.HasIndex("SportId");
@@ -807,6 +745,56 @@ namespace E_Club.Migrations
                     b.HasIndex("UpdatedById");
 
                     b.ToTable("SportClasses", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CurrentParticipants = 8,
+                            EndTime = new DateTime(2026, 4, 25, 12, 0, 0, 0, DateTimeKind.Utc),
+                            Location = "Pitch A",
+                            MaxParticipants = 20,
+                            Price = 50m,
+                            SportId = 1,
+                            StartTime = new DateTime(2026, 4, 25, 10, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 0,
+                            Title = "Pro Football Drill",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CurrentParticipants = 5,
+                            EndTime = new DateTime(2026, 4, 25, 16, 0, 0, 0, DateTimeKind.Utc),
+                            Location = "Room 201",
+                            MaxParticipants = 15,
+                            Price = 30m,
+                            SportId = 1,
+                            StartTime = new DateTime(2026, 4, 25, 14, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 0,
+                            Title = "Tactics & Strategy",
+                            Type = 0
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedById = "22222222-2222-2222-2222-222222222222",
+                            CreatedOn = new DateTime(2026, 3, 19, 0, 0, 0, 0, DateTimeKind.Utc),
+                            CurrentParticipants = 15,
+                            EndTime = new DateTime(2026, 4, 28, 18, 0, 0, 0, DateTimeKind.Utc),
+                            Location = "Main Stadium",
+                            MaxParticipants = 50,
+                            Price = 100m,
+                            SportId = 1,
+                            StartTime = new DateTime(2026, 4, 28, 9, 0, 0, 0, DateTimeKind.Utc),
+                            Status = 0,
+                            Title = "Weekend Football Cup",
+                            Type = 1
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -956,21 +944,6 @@ namespace E_Club.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("E_Club.Models.Coach", b =>
-                {
-                    b.HasOne("E_Club.Models.ApplicationUser", "CreatedBy")
-                        .WithMany()
-                        .HasForeignKey("CreatedById");
-
-                    b.HasOne("E_Club.Models.ApplicationUser", "UpdatedBy")
-                        .WithMany()
-                        .HasForeignKey("UpdatedById");
-
-                    b.Navigation("CreatedBy");
-
-                    b.Navigation("UpdatedBy");
-                });
-
             modelBuilder.Entity("E_Club.Models.Event", b =>
                 {
                     b.HasOne("E_Club.Models.ApplicationUser", "CreatedBy")
@@ -1001,15 +974,6 @@ namespace E_Club.Migrations
                         .IsRequired();
 
                     b.Navigation("Event");
-
-                    b.Navigation("User");
-                });
-
-            modelBuilder.Entity("E_Club.Models.Notification", b =>
-                {
-                    b.HasOne("E_Club.Models.ApplicationUser", "User")
-                        .WithMany("Notifications")
-                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
@@ -1057,10 +1021,6 @@ namespace E_Club.Migrations
 
             modelBuilder.Entity("E_Club.Models.SportClass", b =>
                 {
-                    b.HasOne("E_Club.Models.Coach", "Coach")
-                        .WithMany("Classes")
-                        .HasForeignKey("CoachId");
-
                     b.HasOne("E_Club.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById");
@@ -1074,8 +1034,6 @@ namespace E_Club.Migrations
                     b.HasOne("E_Club.Models.ApplicationUser", "UpdatedBy")
                         .WithMany()
                         .HasForeignKey("UpdatedById");
-
-                    b.Navigation("Coach");
 
                     b.Navigation("CreatedBy");
 
@@ -1137,14 +1095,7 @@ namespace E_Club.Migrations
 
             modelBuilder.Entity("E_Club.Models.ApplicationUser", b =>
                 {
-                    b.Navigation("Notifications");
-
                     b.Navigation("RefreshTokens");
-                });
-
-            modelBuilder.Entity("E_Club.Models.Coach", b =>
-                {
-                    b.Navigation("Classes");
                 });
 
             modelBuilder.Entity("E_Club.Models.Sport", b =>

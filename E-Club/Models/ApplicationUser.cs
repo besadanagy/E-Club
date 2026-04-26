@@ -1,4 +1,4 @@
-﻿namespace E_Club.Models
+namespace E_Club.Models
 {
     public class ApplicationUser : IdentityUser
     {
@@ -14,5 +14,6 @@
         public string? DigitalAccessKey { get; set; }
 
         public List<RefreshToken> RefreshTokens { get; set; } = new();
+        public List<Notification> Notifications { get; set; } = new();
     }
 }

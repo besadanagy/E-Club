@@ -1,4 +1,4 @@
-﻿
+
 namespace E_Club.Models;
 
 public class Service : AuditTable
@@ -19,5 +19,7 @@ public enum ServiceType
     Booking,
     Tournament,
     Coaching,
+    Restaurant,
+    Party,
     Other
 }

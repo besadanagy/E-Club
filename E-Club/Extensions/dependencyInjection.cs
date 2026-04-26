@@ -1,4 +1,4 @@
-﻿
+
 namespace E_Club.Extensions
 {
     public static class DependencyInjection
@@ -21,6 +21,13 @@ namespace E_Club.Extensions
             services.AddScoped<IDashboardService, DashboardService>();
             services.AddScoped<IEventService, EventService>();
             services.AddScoped<IServiceService, ServiceService>();
+            services.AddScoped<IBannerService, BannerService>();
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IEventRegistrationService, EventRegistrationService>();
+            services.AddScoped<ISportService, SportService>();
+            services.AddScoped<INotificationService, NotificationService>();
+            services.AddScoped<ICoachService, CoachService>();
+
             // Database Context
             services.AddDatabaseConfiguration(configuration);
 

@@ -1,4 +1,4 @@
-﻿
+
 namespace E_Club.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, string>
@@ -16,6 +16,15 @@ namespace E_Club.Data
         public DbSet<RefreshToken> RefreshTokens { get; set; }
         public DbSet<Event> Events { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<Banner> Banners { get; set; }
+        public DbSet<EventRegistration> EventRegistrations { get; set; }
+        public DbSet<Sport> Sports { get; set; }
+        public DbSet<SportClass> SportClasses { get; set; }
+        public DbSet<ClassBooking> ClassBookings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Coach> Coaches { get; set; }
+
+      
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
