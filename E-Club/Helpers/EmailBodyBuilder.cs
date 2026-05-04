@@ -1,4 +1,4 @@
-﻿namespace Survey_Basket.Helper
+namespace E_Club.Helpers
 {
     public static class EmailBodyBuilder
     {

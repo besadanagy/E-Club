@@ -1,0 +1,182 @@
+@baseUrl =https://e-club.runasp.net
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhMmNjZGYwYy04NGNhLTQ4MDMtYTU3Mi02YjU4YzdjNzE0NTQiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6ImEyY2NkZjBjLTg0Y2EtNDgwMy1hNTcyLTZiNThjN2M3MTQ1NCIsImdpdmVuX25hbWUiOiJBZG1pbiIsImZhbWlseV9uYW1lIjoiVXNlciIsImVtYWlsIjoiYWRtaW5AZS1jbHViLnJ1bmFzcC5uZXQiLCJqdGkiOiJjODkwYTg3ZS0zZWExLTRmOWYtOGJhNy0xZmQ4ZmIwMzY3MDIiLCJ1c2VySWQiOiJhMmNjZGYwYy04NGNhLTQ4MDMtYTU3Mi02YjU4YzdjNzE0NTQiLCJmdWxsTmFtZSI6IkFkbWluIFVzZXIiLCJyb2xlcyI6WyJBZG1pbiJdLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsImV4cCI6MTc3NzI1MTMwNywiaXNzIjoiaHR0cHM6Ly9lLWNsdWIucnVuYXNwLm5ldCIsImF1ZCI6Imh0dHBzOi8vZS1jbHViLnJ1bmFzcC5uZXQifQ.CdjpVbRabBTNuQc6KHnkHB67gDsp-XArMPls3QULTzI
+
+### ==================== AUTHENTICATION ====================
+
+### Login (Admin)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@example.com",
+  "clubCode": "CLUB-001",
+  "password": "Password123!",
+  "isAdmin": true
+}
+
+### Login (Member)
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "membershipId": "MEM-12345",
+  "sequenceNumber": "01",
+  "password": "Password123!",
+  "isAdmin": false
+}
+
+### Register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "fullName": "Test User",
+  "email": "test@example.com",
+  "password": "Password123!",
+  "phoneNumber": "01000000000"
+}
+
+
+### ==================== SPORTS ====================
+
+### Get Sports Screen
+GET {{baseUrl}}/api/sports/screen?sportId=1
+Authorization: Bearer {{token}}
+
+### Get All Sports
+GET {{baseUrl}}/api/sports
+Authorization: Bearer {{token}}
+
+### Get Upcoming Classes
+GET {{baseUrl}}/api/sports/classes?sportId=1
+Authorization: Bearer {{token}}
+
+### Create Sport Class (Admin Only)
+POST {{baseUrl}}/api/sports/classes
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Morning Yoga Session",
+  "description": "Relaxing morning yoga session for all levels.",
+  "imageUrl": "https://example.com/yoga.jpg",
+  "sportId": 1,
+  "startTime": "2026-05-01T08:00:00Z",
+  "endTime": "2026-05-01T09:00:00Z",
+  "location": "Main Hall",
+  "maxParticipants": 20,
+  "price": 50.0,
+  "type": "Regular"
+}
+
+### Book a Class
+POST {{baseUrl}}/api/sports/classes/1/book
+Authorization: Bearer {{token}}
+
+### Get My Bookings
+GET {{baseUrl}}/api/sports/my-bookings
+Authorization: Bearer {{token}}
+
+
+### ==================== EVENTS ====================
+
+### Get Featured Event
+GET {{baseUrl}}/api/events/featured
+Authorization: Bearer {{token}}
+
+### Get Upcoming Events
+GET {{baseUrl}}/api/events/upcoming
+Authorization: Bearer {{token}}
+
+### Get Event By Id
+GET {{baseUrl}}/api/events/1
+Authorization: Bearer {{token}}
+
+### Create Event (Admin Only)
+POST {{baseUrl}}/api/events
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Summer Festival",
+  "description": "Biggest summer festival in the club with many activities.",
+  "imageUrl": "https://example.com/festival.jpg",
+  "startDate": "2026-07-15T18:00:00Z",
+  "endDate": "2026-07-15T23:00:00Z",
+  "location": "Club Garden",
+  "price": 150.0,
+  "isFeatured": true,
+  "capacity": 500
+}
+
+
+### ==================== SERVICES ====================
+
+### Get Quick Services
+GET {{baseUrl}}/api/services/quick
+Authorization: Bearer {{token}}
+
+### Get All Services
+GET {{baseUrl}}/api/services
+Authorization: Bearer {{token}}
+
+### Create Service (Admin Only)
+POST {{baseUrl}}/api/services
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "name": "Spa & Massage",
+  "description": "Full body massage and spa treatment.",
+  "icon": "spa-icon",
+  "imageUrl": "https://example.com/spa.jpg",
+  "price": 300.0,
+  "isQuickService": false
+}
+
+
+### ==================== NOTIFICATIONS ====================
+
+### Get My Notifications
+GET {{baseUrl}}/api/notifications?page=1&pageSize=10
+Authorization: Bearer {{token}}
+
+### Get Unread Count
+GET {{baseUrl}}/api/notifications/unread-count
+Authorization: Bearer {{token}}
+
+### Create Notification (Admin Only)
+POST {{baseUrl}}/api/notifications
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "System Update",
+  "message": "We have updated the club app! Enjoy the new features.",
+  "userId": null, 
+  "type": "System"
+}
+
+### Mark All As Read
+PUT {{baseUrl}}/api/notifications/read-all
+Authorization: Bearer {{token}}
+
+
+### ==================== BANNERS ====================
+
+### Get All Banners
+GET {{baseUrl}}/api/banners
+Authorization: Bearer {{token}}
+
+### Create Banner (Admin Only)
+POST {{baseUrl}}/api/banners
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "title": "Special Discount",
+  "description": "Get 20% off on all spa services this weekend!",
+  "imageUrl": "https://example.com/banner.jpg",
+  "linkUrl": "/services/spa",
+  "isActive": true
+}

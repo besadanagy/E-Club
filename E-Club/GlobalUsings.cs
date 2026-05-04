@@ -36,7 +36,7 @@ global using MapsterMapper;
 global using E_Club.Data;
 global using E_Club.DTOs.Auth.Responses;
 global using E_Club.JWT;
-global using Survey_Basket.Helper;
+global using E_Club.Helpers;
 global using E_Club.Extensions;
 global using E_Club.DTOs.Roles;
 global using Microsoft.OpenApi.Models;

@@ -15,7 +15,12 @@ public class SportClassConfiguration : IEntityTypeConfiguration<SportClass>
             .HasForeignKey(c => c.SportId)
             .OnDelete(DeleteBehavior.Cascade);
 
+        builder.HasOne(c => c.Coach)
+            .WithMany(coach => coach.Classes)
+            .HasForeignKey(c => c.CoachId)
+            .OnDelete(DeleteBehavior.SetNull);
+
         builder.Property(x => x.Price)
-    .HasPrecision(18, 2);  // 18 digits total, 2 after decimal point
+            .HasPrecision(18, 2);  // 18 digits total, 2 after decimal point
     }
 }

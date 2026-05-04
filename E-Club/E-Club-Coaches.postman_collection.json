@@ -1,0 +1,142 @@
+{
+	"info": {
+		"name": "E-Club Coaches API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Coaches",
+			"request": {
+				"method": "GET",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" }
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches" ]
+				}
+			}
+		},
+		{
+			"name": "Get Coach By Id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" }
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches/1",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches", "1" ]
+				}
+			}
+		},
+		{
+			"name": "Get Coaches By Specialization",
+			"request": {
+				"method": "GET",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" }
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches/specialization/Football",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches", "specialization", "Football" ]
+				}
+			}
+		},
+		{
+			"name": "Create Coach",
+			"request": {
+				"method": "POST",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" },
+					{ "key": "Content-Type", "value": "application/json" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullName\": \"Ahmed Coach\",\n  \"specialization\": \"Football\",\n  \"imageUrl\": \"https://example.com/img.jpg\",\n  \"bio\": \"Expert football coach.\",\n  \"experienceYears\": 5,\n  \"phoneNumber\": \"01000000000\",\n  \"email\": \"ahmed@coach.com\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches" ]
+				}
+			}
+		},
+		{
+			"name": "Update Coach",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" },
+					{ "key": "Content-Type", "value": "application/json" }
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"fullName\": \"Ahmed Coach Updated\",\n  \"specialization\": \"Football\",\n  \"imageUrl\": \"https://example.com/img.jpg\",\n  \"bio\": \"Expert football coach.\",\n  \"experienceYears\": 6,\n  \"phoneNumber\": \"01000000000\",\n  \"email\": \"ahmed@coach.com\"\n}"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches/1",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches", "1" ]
+				}
+			}
+		},
+		{
+			"name": "Delete Coach",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" }
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches/1",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches", "1" ]
+				}
+			}
+		},
+		{
+			"name": "Assign Coach To Class",
+			"request": {
+				"method": "POST",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" }
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches/classes/1/assign/1",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches", "classes", "1", "assign", "1" ]
+				}
+			}
+		},
+		{
+			"name": "Remove Coach From Class",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{ "key": "Authorization", "value": "Bearer {{token}}" }
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/coaches/classes/1/assign",
+					"host": [ "{{baseUrl}}" ],
+					"path": [ "api", "coaches", "classes", "1", "assign" ]
+				}
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://localhost:7274",
+			"type": "string"
+		},
+		{
+			"key": "token",
+			"value": "YOUR_ADMIN_TOKEN_HERE",
+			"type": "string"
+		}
+	]
+}

@@ -1,4 +1,4 @@
-﻿namespace E_Club.Services
+namespace E_Club.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
@@ -260,6 +260,7 @@
             var result = await _userManager.ConfirmEmailAsync(user, code);
             if (result.Succeeded)
             {
+                SendWelcomeEmail(user);
                 return Result.Success();
             }
 
@@ -393,6 +394,31 @@
                 });
 
             BackgroundJob.Enqueue(() => _emailSender.SendEmailAsync(user.Email!, "E-Club : Reset Password ✅", emailBody));
+        }
+
+        private void SendWelcomeEmail(ApplicationUser user)
+        {
+            string roleSpecificContent = "";
+            
+            if (!string.IsNullOrEmpty(user.ClubCode))
+            {
+                // Admin
+                roleSpecificContent = $"<p><strong>Club Code:</strong> {user.ClubCode}</p>";
+            }
+            else
+            {
+                // Member
+                roleSpecificContent = $"<p><strong>Membership ID:</strong> {user.MembershipId}</p><p><strong>Sequence No:</strong> {user.SequenceNumber}</p>";
+            }
+
+            var emailBody = EmailBodyBuilder.generateEmailBody("WelcomeEmail",
+                new Dictionary<string, string>
+                {
+                    { "{{name}}", $"{user.FirstName} {user.LastName}" },
+                    { "{{role_specific_content}}", roleSpecificContent }
+                });
+
+            BackgroundJob.Enqueue(() => _emailSender.SendEmailAsync(user.Email!, "Welcome to E-Club ✅", emailBody));
         }
 
         private async Task<(IEnumerable<string> roles, IEnumerable<string> permissions)> GetUserRolesAndPermission(ApplicationUser user, CancellationToken cancellationToken)

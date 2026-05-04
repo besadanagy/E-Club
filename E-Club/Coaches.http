@@ -1,0 +1,56 @@
+@baseUrl = https://localhost:7274
+@token = YOUR_ADMIN_TOKEN_HERE
+
+### Get All Coaches
+GET {{baseUrl}}/api/coaches
+Authorization: Bearer {{token}}
+
+### Get Coach By Id
+GET {{baseUrl}}/api/coaches/1
+Authorization: Bearer {{token}}
+
+### Get Coaches By Specialization
+GET {{baseUrl}}/api/coaches/specialization/Football
+Authorization: Bearer {{token}}
+
+### Create Coach (Admin Only)
+POST {{baseUrl}}/api/coaches
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "fullName": "Ahmed Coach",
+  "specialization": "Football",
+  "imageUrl": "https://example.com/img.jpg",
+  "bio": "Expert football coach.",
+  "experienceYears": 5,
+  "phoneNumber": "01000000000",
+  "email": "ahmed@coach.com"
+}
+
+### Update Coach (Admin Only)
+PUT {{baseUrl}}/api/coaches/1
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "fullName": "Ahmed Coach Updated",
+  "specialization": "Football",
+  "imageUrl": "https://example.com/img.jpg",
+  "bio": "Expert football coach.",
+  "experienceYears": 6,
+  "phoneNumber": "01000000000",
+  "email": "ahmed@coach.com"
+}
+
+### Delete Coach (Admin Only)
+DELETE {{baseUrl}}/api/coaches/1
+Authorization: Bearer {{token}}
+
+### Assign Coach To Class (Admin Only)
+POST {{baseUrl}}/api/coaches/classes/1/assign/1
+Authorization: Bearer {{token}}
+
+### Remove Coach From Class (Admin Only)
+DELETE {{baseUrl}}/api/coaches/classes/1/assign
+Authorization: Bearer {{token}}

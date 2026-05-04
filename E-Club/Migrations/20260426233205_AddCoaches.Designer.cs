@@ -4,6 +4,7 @@ using E_Club.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Club.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260426233205_AddCoaches")]
+    partial class AddCoaches
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -179,8 +182,8 @@ namespace E_Club.Migrations
                         {
                             Id = "22222222-2222-2222-2222-222222222222",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "d7b6b3f1-1ca4-4156-83da-56483c6e1304",
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 667, DateTimeKind.Utc).AddTicks(5160),
+                            ConcurrencyStamp = "006142ad-95b5-4bbb-928d-b5608a0fb379",
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 677, DateTimeKind.Utc).AddTicks(7658),
                             Email = "admin@eclub.com",
                             EmailConfirmed = true,
                             FirstName = "Admin",
@@ -189,9 +192,9 @@ namespace E_Club.Migrations
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ECLUB.COM",
                             NormalizedUserName = "ADMIN@ECLUB.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENGJMdYt9grLCJbM3pKUD6Ex4IKOUx0FqZi+dVkUG0Ds3dUk6/ML0ql6RTUG5skUBQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEGLPAxvq2cmf4I2GJCEPKpjpimEYKEoEB3QRsg5jQDazEDz8e+w3MfpvhyV2QCpiLA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "7c5826ce-16b7-4d51-937e-df304fd55143",
+                            SecurityStamp = "1de6847f-cc31-4be8-9bcf-ab3247fa1aff",
                             TwoFactorEnabled = false,
                             UserName = "admin@eclub.com"
                         });
@@ -257,7 +260,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 647, DateTimeKind.Utc).AddTicks(9656),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 651, DateTimeKind.Utc).AddTicks(8762),
                             DisplayOrder = 1,
                             ImageUrl = "/images/banners/tournament.jpg",
                             IsActive = true,
@@ -429,7 +432,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 657, DateTimeKind.Utc).AddTicks(1432),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 662, DateTimeKind.Utc).AddTicks(6424),
                             CurrentParticipants = 45,
                             Description = "Join us for the biggest football event of the year!",
                             EndDate = new DateTime(2023, 10, 26, 18, 0, 0, 0, DateTimeKind.Utc),
@@ -622,7 +625,7 @@ namespace E_Club.Migrations
                         {
                             Id = 1,
                             CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 663, DateTimeKind.Utc).AddTicks(6934),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 671, DateTimeKind.Utc).AddTicks(4623),
                             Description = "Reserve your favorite football field",
                             DisplayOrder = 1,
                             Endpoint = "/book-field",
@@ -635,7 +638,7 @@ namespace E_Club.Migrations
                         {
                             Id = 2,
                             CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 663, DateTimeKind.Utc).AddTicks(6936),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 671, DateTimeKind.Utc).AddTicks(4632),
                             Description = "Participate in upcoming tournaments",
                             DisplayOrder = 2,
                             Endpoint = "/join-tournament",
@@ -648,7 +651,7 @@ namespace E_Club.Migrations
                         {
                             Id = 3,
                             CreatedById = "22222222-2222-2222-2222-222222222222",
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 663, DateTimeKind.Utc).AddTicks(6938),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 671, DateTimeKind.Utc).AddTicks(4634),
                             Description = "Get one-on-one coaching",
                             DisplayOrder = 3,
                             Endpoint = "/personal-coaching",
@@ -710,7 +713,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 666, DateTimeKind.Utc).AddTicks(2054),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 674, DateTimeKind.Utc).AddTicks(8701),
                             DisplayOrder = 1,
                             Icon = "sports_soccer",
                             IsActive = true,
@@ -719,7 +722,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 666, DateTimeKind.Utc).AddTicks(2057),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 674, DateTimeKind.Utc).AddTicks(8706),
                             DisplayOrder = 2,
                             Icon = "sports_basketball",
                             IsActive = true,
@@ -728,7 +731,7 @@ namespace E_Club.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedOn = new DateTime(2026, 5, 4, 22, 35, 1, 666, DateTimeKind.Utc).AddTicks(2058),
+                            CreatedOn = new DateTime(2026, 4, 26, 23, 32, 4, 674, DateTimeKind.Utc).AddTicks(8708),
                             DisplayOrder = 3,
                             Icon = "sports_tennis",
                             IsActive = true,
