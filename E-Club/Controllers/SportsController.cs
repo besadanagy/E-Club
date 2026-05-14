@@ -21,10 +21,10 @@ public class SportsController(ISportService sportService) : ControllerBase
     }
 
     [HttpGet("classes")]
-    public async Task<IActionResult> GetUpcomingClasses([FromQuery] int? sportId)
+    public async Task<IActionResult> GetUpcomingClasses([FromQuery] int? sportId, [FromQuery] int? coachId, [FromQuery] DateTime? date)
     {
         var userId = User.GetUserId();
-        var result = await sportService.GetUpcomingClassesAsync(sportId, userId!);
+        var result = await sportService.GetUpcomingClassesAsync(sportId, userId!, coachId, date);
         return result.IsSuccess ? Ok(result.Value) : result.ToProblem();
     }
 

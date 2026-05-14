@@ -10,5 +10,6 @@ public record CreateSportClassRequest(
     string Location,
     int MaxParticipants,
     decimal Price,
-    string Type
+    string Type,
+    int? CoachId = null
 );

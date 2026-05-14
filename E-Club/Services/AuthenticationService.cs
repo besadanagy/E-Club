@@ -366,9 +366,7 @@ namespace E_Club.Services
 
         private void SendConfirmationEmail(ApplicationUser user, string code)
         {
-            var origin = _httpContextAccessor.HttpContext?.Request.Headers.Origin.FirstOrDefault()
-                        ?? _httpContextAccessor.HttpContext?.Request.Headers.Referer.FirstOrDefault()
-                        ?? "http://localhost:4200";
+            var origin = "https://e-club.runasp.net";
 
             var emailBody = EmailBodyBuilder.generateEmailBody("EmailConfirmation",
                 new Dictionary<string, string>
@@ -382,9 +380,7 @@ namespace E_Club.Services
 
         private void SendResetPasswordEmail(ApplicationUser user, string code)
         {
-            var origin = _httpContextAccessor.HttpContext?.Request.Headers.Origin.FirstOrDefault()
-                        ?? _httpContextAccessor.HttpContext?.Request.Headers.Referer.FirstOrDefault()
-                        ?? "http://localhost:4200";
+            var origin = "https://e-club.runasp.net";
 
             var emailBody = EmailBodyBuilder.generateEmailBody("ForgetPassword",
                 new Dictionary<string, string>

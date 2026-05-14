@@ -7,8 +7,8 @@ public class SportService(ApplicationDbContext context, ILogger<SportService> lo
         var sports = await GetSportsListAsync();
         var activeSportId = sportId ?? sports.FirstOrDefault()?.Id;
 
-        var classes = await GetClassesAsync(activeSportId, userId, ClassType.Regular);
-        var specialList = await GetClassesAsync(activeSportId, userId, ClassType.Special);
+        var classes = await GetClassesAsync(activeSportId, userId, ClassType.Regular, null, null);
+        var specialList = await GetClassesAsync(activeSportId, userId, ClassType.Special, null, null);
 
         return Result.Success(new SportsScreenResponse(sports, classes, specialList.FirstOrDefault()));
     }
@@ -19,15 +19,15 @@ public class SportService(ApplicationDbContext context, ILogger<SportService> lo
         return Result.Success(sports.AsEnumerable());
     }
 
-    public async Task<Result<IEnumerable<SportClassResponse>>> GetUpcomingClassesAsync(int? sportId, string userId)
+    public async Task<Result<IEnumerable<SportClassResponse>>> GetUpcomingClassesAsync(int? sportId, string userId, int? coachId = null, DateTime? date = null)
     {
-        var classes = await GetClassesAsync(sportId, userId, ClassType.Regular);
+        var classes = await GetClassesAsync(sportId, userId, ClassType.Regular, coachId, date);
         return Result.Success(classes.AsEnumerable());
     }
 
     public async Task<Result<SportClassResponse>> GetSpecialEventAsync(int? sportId, string userId)
     {
-        var specials = await GetClassesAsync(sportId, userId, ClassType.Special);
+        var specials = await GetClassesAsync(sportId, userId, ClassType.Special, null, null);
         var special = specials.FirstOrDefault();
 
         return special is null
@@ -143,6 +143,7 @@ public class SportService(ApplicationDbContext context, ILogger<SportService> lo
             Price = request.Price,
             Type = classType,
             Status = ClassStatus.Upcoming,
+            CoachId = request.CoachId,
             CreatedById = userId,
             CreatedOn = DateTime.UtcNow
         };
@@ -196,7 +197,7 @@ public class SportService(ApplicationDbContext context, ILogger<SportService> lo
             .Select(s => new SportResponse(s.Id, s.Name, s.Icon, s.ImageUrl, s.IsActive))
             .ToListAsync();
 
-    private async Task<List<SportClassResponse>> GetClassesAsync(int? sportId, string userId, ClassType type)
+    private async Task<List<SportClassResponse>> GetClassesAsync(int? sportId, string userId, ClassType type, int? coachId, DateTime? date)
     {
         var myBookings = await context.ClassBookings
             .Where(b => b.UserId == userId && b.Status == BookingStatus.Confirmed)
@@ -212,6 +213,15 @@ public class SportService(ApplicationDbContext context, ILogger<SportService> lo
 
         if (sportId.HasValue)
             query = query.Where(c => c.SportId == sportId.Value);
+
+        if (coachId.HasValue)
+            query = query.Where(c => c.CoachId == coachId.Value);
+
+        if (date.HasValue)
+        {
+            var targetDate = date.Value.Date;
+            query = query.Where(c => c.StartTime.Date == targetDate);
+        }
 
         var classes = await query.OrderBy(c => c.StartTime).ToListAsync();
 
